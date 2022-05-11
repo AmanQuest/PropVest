@@ -1,0 +1,74 @@
+
+
+
+<section class="propert-list-sec pt-0 property-details-sec">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="project-img porpert-list-box">
+                     <img src="/uploadFile/<%=land.image%>" class="img-fluid"> 
+                     <div class="porperty-list-content">
+                        <div class="inner-property">
+                             <h6 class="sub-heading-inner gray-color"><%=land.name %></h6>
+                            <h3 class="heading-main"><%=land.name %></h3>
+                          
+                            <p><%=land.content %></p>
+                           <div class="heading-box">
+                                <h5><small>Size</small> A <%=land.size%> map </h5>
+                                <h5><small>Min Buying Amount</small> <%=land.price%> Matic</h5>
+                                <h5><small>Price</small> <%=land.price%> Matic</h5>
+                            
+                                <h5><small>Qunatity Per brick</small> 1000 </h5>
+                                <h5><small>Rate per brick</small>   1000 </h5>
+                                <h5><small>Qunatity</small><%=nft %> Plots Left</h5>
+                            </div>
+                            <div>
+                                <% if(nft>0){%> 
+                                    <a href="javascript::void(0)" value="<%=land._id %>" class="common-btn buynow">Buy Now</a>
+                                <%}else{%>
+                                    <a href="javascript::void(0)" value="<%=land._id %>" class="common-btn">Sold Out</a>
+                                <%	} %>
+
+                            </div>  
+                            <div>
+                                <a href="" class="view-all-images-link">View All Images</a>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+     <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                   <div class="project-img porpert-list-box mb-3">
+                     <img src="/new/images/project/pj1.png" class="img-fluid"> 
+                 </div>
+            </div>
+            <div class="col-md-6">
+                   <div class="project-img porpert-list-box mb-3">
+                     <img src="/new/images/project/pj2.png" class="img-fluid"> 
+                 </div>
+            </div>
+            <div class="col-md-6">
+                   <div class="project-img porpert-list-box mb-3">
+                     <img src="/new/images/project/pj3.png" class="img-fluid"> 
+                 </div>
+            </div>
+            <div class="col-md-6">
+                   <div class="project-img porpert-list-box mb-3">
+                     <img src="/new/images/project/pj1.png" class="img-fluid"> 
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+

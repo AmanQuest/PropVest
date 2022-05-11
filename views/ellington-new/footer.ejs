@@ -1,0 +1,936 @@
+
+
+<footer class=" footer-main">
+  <div class="container">
+        <div class="row"> 
+            <div class="col-md-3 col-12 footer-list">
+              <img class="logo-foot" src="/new/images/logo.png">
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.Lorem Ipsum is simply dummy text.</p>
+              
+            </div>
+            <div class="col-md-3 col-12 footer-list">
+              <h4 class="mt-2 font-weight-bold">Quick Links</h4>
+              <ul >
+                <li ><a href="/about-us">About us</a></li>
+                <li ><a href="/property">Our Properties</a></li>
+                <li ><a href="/contact-us">Contact Us</a></li>
+                <li ><a href="#">Services</a></li>
+                <li ><a href="/property">Our Projects</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3 col-12 footer-list">
+              <h4 class="mt-2 font-weight-bold">Our Policies</h4>
+              <ul >
+                <li ><a href="#">Privacy Policy</a></li>
+                <li ><a href="#">Terms & Condition</a></li>
+                <li ><a href="#">Refund & Return Policy</a></li>
+                <li ><a href="#">Cookie policy</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3 col-12 footer-list">
+              <h4 class="mt-2 font-weight-bold">Stay up to date</h4>
+               <p>Stay updated with Quest Glt Properties, zero spam, we promise 🙏</p>
+              <ul class="social-links">
+                <li><a href=""><img src="/new/images/social1.png"></a></li>
+                <li><a href=""><img src="/new/images/social2.png"></a></li>
+                <li><a href=""><img src="/new/images/social3.png"></a></li>
+              </ul>
+              <div class=" copyright-line mt-0">
+                     <p>2022 <b>Quest Glt Properties</b>.All rights reserved</p>
+                
+              </div>
+          </div>
+      </div>
+      
+  </div>
+  <form>
+    <input type="hidden"name="token_id" id="token_id" value="">
+    <input type="hidden"name="min_price" id="min_price" value="">
+    <input type="hidden"name="token_url" id="token_url" value="">
+    <input type="hidden"name="signature"id="signature"value="">
+    <input type="hidden"name="land_id"id="land_id"value="">
+    <input type="hidden"name="nft_id"id="nft_id"value="">
+    <input type="hidden"name="land_price"id="land_price" value="" />
+
+</form>
+</footer>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- loader -->
+
+  <script>
+  function seeloader()
+    {
+        document.getElementById("loader").style.display = "";
+    }
+
+    function hideloader(){
+        document.getElementById("loader").style.display = "none";
+
+    }
+
+</script>
+<script>
+  window.onload = (event) => {
+   hideloader()
+   };
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- web3 cdn -->
+<script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/web3modal"></script>
+<script type="text/javascript" src="https://unpkg.com/evm-chains/lib/index.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider"></script>
+<script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+<!-- web3 cdn -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(window).scroll(function(){
+  if ($(this).scrollTop() > 50) {
+     $('.header-main').addClass('dark-header');
+  } else {
+     $('.header-main').removeClass('dark-header');
+  }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
+<script>
+$('.testimonial-slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      arrows: false,
+      responsive: [{
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll:2
+        }
+      },
+      {
+         breakpoint: 768,
+         settings: {
+            arrows: false,
+            slidesToShow: 1,
+            slidesToScroll: 1
+         }
+      }]
+  });
+</script>
+
+</body>
+</html>
+
+
+<!-- buy script start -->
+
+<script>
+
+  $(document).ready(function() {
+    $('select').niceSelect();
+  });
+
+  
+  async function getAccount() {
+      accountsLocal = await ethereum.request({
+          method: 'eth_requestAccounts'
+      });
+         console.log(accountsLocal);
+      accounts = accountsLocal[0];
+      $(".hidden_address").val(accounts);
+      //        var obj=document.getElementById('tx_id');
+      //        obj.value=accounts;
+      return accounts;
+  }
+  async function metanaskPopup(){
+      finalprice =0;//getBasicPrice();
+      user_accounts = await getAccount();
+      ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+              from: user_accounts,
+              to: '0x6cDDe6477FCBC301a11ECD8Dc41307A5470DF7F1',
+              value: '0x' + ((finalprice * 1000000000000000000).toString(16)), //'0x09184e72a000',
+              chainId: '0x1' //gasPrice: '0x09184e72a000',
+              //gas: '21000',
+          }, ],
+      })
+
+      .then((txHash) => {
+           swal("Congratulations!", "The Plot have been purchased!", "success");
+
+           location.reload();
+         });
+  }
+ 
+ 
+ 
+  async function subscribeByMetaMask(value){
+      finalprice =value;
+      user_accounts = await getAccount();
+      ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+              from: user_accounts,
+              to: '0x6cDDe6477FCBC301a11ECD8Dc41307A5470DF7F1',
+              value: '0x' + ((finalprice * 1000000000000000000).toString(16)), //'0x09184e72a000',
+              chainId: '0x1' //gasPrice: '0x09184e72a000',
+              //gas: '21000',
+          }, ],
+      })
+
+      .then((txHash) => {
+          console.log(txHash);
+          window.location.href="/subscribed";
+
+          // var obj = document.getElementById('tx_id1');
+          // // obj.value = txHash;
+          // $.ajax({
+          //     dataType: "json",
+          //     type: 'GET',
+          //     url: '/store-hash',
+          //     data: {
+          //         tx_id: txHash,
+          //         art_id: art_id,
+          //         address: user_accounts,
+          //         qty: document.getElementById("copies").value,
+          //         amount: finalprice,
+          //         currency: currency,
+          //         currencyRate: currencyRate
+          //     },
+          //     success: function(data) {
+          //         swal({
+          //             type: 'success',
+          //             text: 'Transaction completed successfully.',
+          //             timer: 3000,
+          //             onOpen: function() {
+          //                 swal.showLoading()
+          //             }
+          //         }).then(function() {
+          //             location.reload();
+          //         });
+          //         //               location.reload();
+          //     }
+          // });
+      });
+  }
+ 
+ 
+  
+
+
+
+  function getContentId(){
+  const queryString = window.location.search;
+
+  const urlParams = new URLSearchParams(queryString);
+
+   const content_id = urlParams.get('id')
+  
+    console.log(content_id);
+    return content_id;
+ }
+
+ function getBasicPrice(){
+     let price=document.getElementById("content_basic_price").value;
+     return price;
+ }
+</script>
+
+<script>
+  async function checkUser(){
+       metanaskPopup();
+        // alert("hello");
+      //subscribeByMetaMask(0)
+      
+     //let account= await getAccount(); //await onLogin();
+      
+       console.log(account);
+      
+         $.ajax({type:"get",
+              url:"/users/login-by-wallet",
+              data:{account:account},
+              success:function(res){
+                 
+                   if(res){  //alert(res);
+                       console.log(res);
+                      location.reload();
+                      swal("Good job!", "Order Placed Successfully!", "success");
+                   }else
+                     {
+                      swal("Please Select Wallet!");
+
+                     } 
+                    console.log(res);
+
+              }
+          });
+
+  }
+  
+</script>    
+
+
+
+
+<script>
+  
+  // Script connect wallet
+  
+   // Unpkg imports
+  const Web3Modal = window.Web3Modal.default;
+  const WalletConnectProvider = window.WalletConnectProvider.default;
+  const EvmChains = window.EvmChains;
+  const Fortmatic = window.Fortmatic;
+  
+  // Web3modal instance
+  let web3Modal
+  
+  // Chosen wallet provider given by the dialog window
+  let provider;
+  
+  
+  // Address of the selected account
+  let selectedAccount;
+  
+  
+  /**
+   * Setup the orchestra
+   */
+  function init() {
+  
+      console.log("Initializing example");
+      console.log("WalletConnectProvider is", WalletConnectProvider);
+      // console.log("Fortmatic is", Fortmatic);
+  
+      // Tell Web3modal what providers we have available.
+      // Built-in web browser provider (only one can exist as a time)
+      // like MetaMask, Brave or Opera is added automatically by Web3modal
+      const providerOptions = {
+          walletconnect: {
+          package: WalletConnectProvider,
+          options: {
+                  rpc: {
+                      56: 'https://bsc-dataseed.binance.org/',
+                  },
+                  network: 'binance',
+                  chainId: 56,
+                  // infuraId: "bnb1a5cae5d9hp0we9cx9v02n9hvmt94nnuguv0fav",
+              },
+          },
+      };
+      
+  
+      web3Modal = new Web3Modal({
+          cacheProvider: false, // optional
+          providerOptions, // required
+      });
+
+      
+
+  }
+  
+
+  async function freshAccountData() {        
+      //await fetchAccountData(provider); 
+      
+     let account=await getAccountData(provider);
+     return account;
+  }
+  
+  /**
+  * Connect wallet button pressed.
+  */
+ /* async function onConnect() {
+  
+      console.log("Opening a dialog", web3Modal);
+      try {
+            provider = await web3Modal.connect();
+         }catch(e) {
+          console.log("Could not get a wallet connection", e);
+      return;
+      }
+  
+      // Subscribe to accounts change
+      provider.on("accountsChanged", (accounts) => {
+          fetchAccountData();
+      });
+  
+      // Subscribe to chainId change
+      provider.on("chainChanged", (chainId) => {
+          fetchAccountData();
+      });
+  
+     
+  
+      await refreshAccountData();
+  }
+  
+  */
+  async function onLogin(){
+    $('#loginModal').modal('hide');
+     let account_address="";
+      console.log("Opening a dialog", web3Modal);
+      try {
+            provider = await web3Modal.connect();
+          //   console.log("provider", provider);
+
+          //     let chainId = provider.ChainId()
+          //     console.log("chainId", chainId);
+
+         }catch(e) {
+          console.log("Could not get a wallet connection", e);
+      return;
+      }
+  
+      // Subscribe to accounts change
+      provider.on("accountsChanged", (accounts) => {
+          account_address= getAccountData();
+      });
+  
+      // Subscribe to chainId change
+      provider.on("chainChanged", (chainId) => {
+          account_address= getAccountData();
+      });
+  
+      
+       account_address= await freshAccountData();
+
+       //console.log(account_address);
+
+       return account_address;
+  }
+  
+  init();
+  
+  // Script connect wallet
+  
+  
+  async function getAccountData() {
+      // Get a Web3 instance for the wallet
+      const web3 = new Web3(provider);
+  
+      console.log("Web3 instance is", web3);
+  
+      // Get connected chain id from Ethereum node
+      const chainId = await web3.eth.getChainId();
+      console.log("chainId", chainId);
+
+      // if(chainId != 80001){
+              
+      //   swal("oops!", "Please Switch to Matic Testnet", "success");
+      //   location.reload();
+      // }
+      // Load chain information over an HTTP API
+      //   const chainData = await EvmChains.getChain(chainId);
+      //   document.querySelector("#network-name").textContent = chainData.name;
+  
+      // Get list of accounts of the connected wallet
+      const accounts = await web3.eth.getAccounts();
+  
+      // MetaMask does not give you all accounts, only the selected account
+      // console.log("Got accounts", accounts);
+      selectedAccount = accounts[0];
+     console.log(selectedAccount);
+          
+     let obj = {
+          chainId,
+          selectedAccount
+     }
+     return obj;
+  }
+  
+  </script>
+
+
+<script src="/javascripts/wallet.js"></script>
+<script>
+  $('body').on("click",".buyNow",function(){
+      //onConnect();
+      onBuyNFT();
+  });
+
+
+  
+</script>
+ <!-- web3 cdn -->
+ <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+ <script type="text/javascript" src="https://unpkg.com/web3modal"></script>
+ <script type="text/javascript" src="https://unpkg.com/evm-chains/lib/index.js"></script>
+ <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider"></script>
+ <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+ <!-- web3 cdn -->
+
+ <script>
+  // Script connect wallet
+  
+   // Unpkg imports
+  const Web3Modal = window.Web3Modal.default;
+  const WalletConnectProvider = window.WalletConnectProvider.default;
+  const EvmChains = window.EvmChains;
+  const Fortmatic = window.Fortmatic;
+  
+  // Web3modal instance
+  let web3Modal
+  
+  // Chosen wallet provider given by the dialog window
+  let provider;
+  
+  
+  // Address of the selected account
+  let selectedAccount;
+  
+  
+  /**
+   * Setup the orchestra
+   */
+  function init() {
+  
+      console.log("Initializing example");
+      console.log("WalletConnectProvider is", WalletConnectProvider);
+      // console.log("Fortmatic is", Fortmatic);
+  
+      // Tell Web3modal what providers we have available.
+      // Built-in web browser provider (only one can exist as a time)
+      // like MetaMask, Brave or Opera is added automatically by Web3modal
+      const providerOptions = {
+          walletconnect: {
+          package: WalletConnectProvider,
+          options: {
+                  rpc: {
+                      56: 'https://bsc-dataseed.binance.org/',
+                  },
+                  network: 'binance',
+                  chainId: 56,
+                  // infuraId: "bnb1a5cae5d9hp0we9cx9v02n9hvmt94nnuguv0fav",
+              },
+          },
+      };
+  
+      web3Modal = new Web3Modal({
+          cacheProvider: false, // optional
+          providerOptions, // required
+      });
+  }
+ 
+  async function onLogin(){
+     let account_address="";
+      console.log("Opening a dialog", web3Modal);
+      try {
+            provider = await web3Modal.connect();
+
+            console.log("provider", provider);
+
+             let chainId = provider.getChainId()
+             console.log("chainId", chainId);
+            
+         }catch(e) {
+          console.log("Could not get a wallet connection", e);
+      return;
+      }
+  
+      // Subscribe to accounts change
+      provider.on("accountsChanged", (accounts) => {
+          account_address= getAccountData();
+      });
+  
+      // Subscribe to chainId change
+      provider.on("chainChanged", (chainId) => {
+          account_address= getAccountData();
+      });
+  
+      
+       account_address= await freshAccountData();
+
+       //console.log(account_address);
+
+       return account_address;
+  }
+  
+  init();
+  
+  // Script connect wallet
+  
+  
+  async function getAccountData() {
+      // Get a Web3 instance for the wallet
+      const web3 = new Web3(provider);
+  
+      console.log("Web3 instance is", web3);
+  
+      // Get connected chain id from Ethereum node
+      const chainId = await web3.eth.getChainId();
+      // Load chain information over an HTTP API
+      //   const chainData = await EvmChains.getChain(chainId);
+      //   document.querySelector("#network-name").textContent = chainData.name;
+  
+      // Get list of accounts of the connected wallet
+      const accounts = await web3.eth.getAccounts();
+  
+      // MetaMask does not give you all accounts, only the selected account
+      // console.log("Got accounts", accounts);
+      selectedAccount = accounts[0];
+     console.log(selectedAccount);
+  
+     return selectedAccount;
+  }
+  
+  </script>
+
+<script src="/javascripts/js/wallet.js"></script>
+
+<script type="module">
+import { ethers } from "/javascripts/ether.js";
+
+
+let contractAddress="0xFa981EBA342bcB369c99811d134a02D82f54f369";
+const abi = [{"inputs":[{"internalType":"address payable","name":"minter","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"previousAdminRole","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"newAdminRole","type":"bytes32"}],"name":"RoleAdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleRevoked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"DEFAULT_ADMIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MINTER_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"availableToWithdraw","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getChainID","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleAdmin","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getetherbalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"grantMinter","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"hasRole","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"redeemer","type":"address"},{"internalType":"address","name":"owner","type":"address"},{"components":[{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"uint256","name":"minPrice","type":"uint256"},{"internalType":"string","name":"uri","type":"string"},{"internalType":"bytes","name":"signature","type":"bytes"}],"internalType":"struct RealEState.NFTVoucher","name":"voucher","type":"tuple"}],"name":"redeem","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"revokeRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}]
+
+// try {
+//   const provider = new ethers.providers.Web3Provider(window.ethereum)
+// } catch (error) {
+//   swal("oops!", "Please Install Metamask", "success");
+  
+// }
+// console.log(provider.getSigner());
+// //const contract = new ethers.Contract(contractAddress,abi2, provider);
+// //console.log(contract.getChainID())
+// const signer = provider.getSigner();
+// console.log(signer.getAddress())
+
+// if (window.ethereum) {  window.ethereum.enable().then(accounts => {   
+//  console.log('ready to go!') 
+// //    startRedeem();
+// }).catch(reason => {  
+//   console.log("conntect to wallet")
+//    alert('conntect to wallet');  
+//      // Handle error. Likely the user rejected the login. 
+// });}
+// else 
+// {
+//   console.log("The user doesn't have Metamask installed.")  
+//   alert("The user doesn't have Metamask installed."); // The user doesn't have Metamask installed.
+// }
+
+
+
+async function startRedeem(){
+  // let res = await onLogin();
+  // console.log("res", res);
+
+  // if(res.chainId == 80001){
+      let tokenId=document.getElementById('token_id').value;
+      let uri=document.getElementById('token_url').value;
+      let minPrice=document.getElementById('min_price').value;
+      let signature=document.getElementById('signature').value;
+      let nft_id=document.getElementById('nft_id').value;
+      let land_id=document.getElementById('land_id').value;
+      let land_price=document.getElementById('land_price').value;
+
+      const voucherObj={
+          tokenId:tokenId,
+          uri:uri,
+          minPrice:minPrice,
+          signature:signature
+      };
+      
+      // await redeemData(voucherObj,nft_id,land_id,land_price)
+      await redeemDataWeb3(voucherObj,nft_id,land_id,land_price)
+
+  // }else{
+  //     swal("oops!", "Please Switch to matic testnet", "success");
+  // }
+
+  
+}
+
+async function redeemData(voucher,nft_id,land_id,land_price){
+
+  const redeemer = provider.getSigner();
+  let raddress=await redeemer.getAddress();//'0x3246258362e662AE3b482A7e685A955445e9Ed47';//redeemer.getAddress();
+  console.log(raddress);
+  const redeemerContract = new ethers.Contract(contractAddress,abi,redeemer);
+ 
+  let minPrice=land_price; //voucher.minPrice;
+ //const minPrice =""; //ethers.constants.WeiPerEther // charge 1 Eth
+  let amount= '0x' + ((minPrice*1000000000000000000).toString(16))
+  let admin_address='0x7Feeb021608a4Da245Ca992dD09f4cb7C1141AF2';
+  console.log("new voucher",voucher);
+    try{
+    //  let hash= await  redeemerContract.redeem(raddress,voucher,admin_address,admin_address,amount,0);
+    let hash= await  redeemerContract.redeem(raddress, voucher);
+      // document.getElementById('trx').innerText="Transaction Hash: "+hash.hash;
+       console.log(hash.hash);
+        let order={id:nft_id,
+          land_id:land_id,
+          address:raddress,
+          amount:minPrice,
+          hash:hash.hash};
+
+       $.ajax({  type:"POST",
+       dataType: "json",
+       url:"/users/sale-nft",
+       data:order,
+       success:function(res){
+            
+                   swal({
+                            type: 'success',
+                             text: 'Transaction completed successfully.',
+                             timer: 3000,
+                             onOpen: function() {
+                               swal.showLoading()
+                           }
+                       }).then(function() {
+                          window.location.href="/transactions";
+
+                      });
+         }
+         
+      
+      });
+
+      }catch(err){
+        console.log("errror", err);
+        swal("oops!", "You do not have sufficient funds", "success");
+
+    }
+  
+  }
+
+async function redeemDataWeb3(voucher,nft_id,land_id,land_price){
+ 
+  let minPrice=land_price; //voucher.minPrice;
+ 
+  let admin_address='0xd3A5B4cfDDF26945E0BbEf28CF32760b96f758C6';
+
+  //web3 temp code start
+  
+  const tempprovider = await web3Modal.connect();
+  console.log("tempprovider", tempprovider);
+
+  const web3 = new Web3(tempprovider);
+  seeloader()
+
+  console.log("web3", web3);
+
+  const chainId = await web3.eth.getChainId();
+  console.log("chainId", chainId);
+
+  if (chainId == 80001) {
+      const accounts = await web3.eth.getAccounts();
+
+      let selectedAccount = accounts[0];
+      console.log("selectedAccount", selectedAccount);
+      
+      const nftcontract = new web3.eth.Contract(abi, contractAddress);
+
+      const nonce = await web3.eth.getTransactionCount(selectedAccount, "latest");
+      console.log("nonce", nonce);
+      console.log("voucher", voucher);
+      console.log("tokenid", voucher.tokenId);
+
+     
+       try {
+
+        let estimates_gas = await web3.eth.estimateGas({
+          from: selectedAccount,
+          to: contractAddress,
+          value: "0x" + (minPrice * 1000000000000000000).toString(16),
+          data: nftcontract.methods.redeem(selectedAccount, admin_address, voucher).encodeABI(),
+      });
+
+  
+      let gasLimit = web3.utils.toHex(estimates_gas * 2);
+      let gasPrice_bal = await web3.eth.getGasPrice();
+      let gasPrice = web3.utils.toHex(gasPrice_bal * 2);
+
+      const tx = {
+          from: selectedAccount,
+          to: contractAddress,
+          nonce: nonce,
+          gasPrice: gasPrice,
+          gasLimit: gasLimit,
+          // value: Web3.utils.toHex(Web3.utils.toWei(minPrice, "wei")),
+          value: "0x" + (minPrice * 1000000000000000000).toString(16),
+          //'maxPriorityFeePerGas': 1999999987,
+          data: nftcontract.methods.redeem(selectedAccount, admin_address, voucher).encodeABI(),
+      };
+
+      console.log("tx", tx);
+
+        let hash = await web3.eth.sendTransaction(tx);
+        console.log("hash", hash);
+
+        console.log(hash.transactionHash);
+        let order={
+          id:nft_id,
+          land_id:land_id,
+          address:selectedAccount,
+          amount:minPrice,
+          hash:hash.transactionHash,
+          tokenId : voucher.tokenId
+      };
+
+      $.ajax({  type:"POST",
+      dataType: "json",
+      url:"/users/sale-nft",
+      data:order,
+      success:function(res){  
+        hideloader()
+          swal({
+                  type: 'success',
+                  text: 'Transaction completed successfully.',
+                  timer: 3000,
+                  onOpen: function() {
+                      swal.showLoading()
+                  }
+              }).then(function() {
+              window.location.href="/transactions";
+          });
+      }
+      });
+
+       } catch (error) {
+         console.log("Error", error)
+         hideloader()
+        swal("oops!", "Transaction Failed", "error");
+
+       }
+     
+  // web3 temp code end
+
+    // try{
+
+      
+      // }catch(err){
+      //   console.log("errror", err);
+      //   swal("oops!", "You do not have sufficient funds", "success");
+      // }
+  }else{
+      swal("oops!", "Please switch to matic network", "success");
+      hideloader()
+  }
+  
+}
+
+async function buyLand(id){
+
+       $.ajax({
+              type:'get',
+              url:'/land-nft',
+              data:{id:id},
+              success:function(res){
+                console.log('nft id',res._id);
+                document.getElementById('token_id').value=res.nft.token_id;  
+                document.getElementById('min_price').value=res.nft.min_price;
+                document.getElementById('token_url').value=res.nft.token_url;
+                document.getElementById('signature').value=res.nft.signature;
+                document.getElementById('nft_id').value=res.nft._id;  
+                document.getElementById('land_id').value=id;  
+                document.getElementById('land_price').value=res.land.price;
+
+
+                startRedeem();
+             }
+       });
+   }   
+     
+  $('.buynow').click(function(e){
+      
+
+      if (window.ethereum) {  window.ethereum.enable().then(accounts => {   
+      console.log('ready to go!') 
+      e.preventDefault()
+      var id =this.getAttribute('value');
+      console.log(id);
+      buyLand(id);
+      //    startRedeem();
+      }).catch(reason => {  
+        console.log("conntect to wallet")
+        swal("oops!", "conntect to wallet", "success");
+          // Handle error. Likely the user rejected the login. 
+      });}
+      else 
+      {
+        console.log("The user doesn't have Metamask installed.")  
+         // The user doesn't have Metamask installed.
+        // swal("oops!", "Please install metamask", "success");
+        swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please install metamask',
+        })
+
+      }
+
+      
+  })   
+ 
+
+
+</script>
+
+<script>
+    async function checkUser(){
+      //metanaskPopup();
+           
+      //subscribeByMetaMask(0)
+
+      if (typeof window.ethereum !== 'undefined') {
+        console.log('MetaMask is installed!');
+        const tempprovider = await web3Modal.connect();
+    const web3 = new Web3(tempprovider);      
+     let account= await getAccount();
+    
+     //console.log(account)
+      $.ajax({type:"get",
+              url:"/users/login-by-wallet",
+              data:{account:account},
+              success:function(res){
+                 
+                   if(res){  //alert(res);
+                       console.log(res);
+                      //location.reload();
+                      window.location.href="/transactions";
+                   }else
+                     {
+                      swal("Please Select Wallet!");
+                     } 
+                    console.log(res);
+              }
+          });
+      }else{
+        console.log('MetaMask is not installed!');
+        // swal("oops!", "Please install metamask", "success");
+
+        swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please install metamask',
+        })
+      }
+
+ 
+  }
+
+  async function getAccount() {
+      accountsLocal = await ethereum.request({
+          method: 'eth_requestAccounts'
+      });
+         console.log(accountsLocal);
+      accounts = accountsLocal[0];
+      $(".hidden_address").val(accounts);
+      //        var obj=document.getElementById('tx_id');
+      //        obj.value=accounts;
+      return accounts;
+  }
+</script>
+
+<!-- buy script end -->

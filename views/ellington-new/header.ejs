@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PropVest</title>
+    <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+     <link rel="icon" type="image/png" sizes="" href="/new/images/logo.png">
+
+     <script src="https://kit.fontawesome.com/0038dd4693.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>   
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+     <link rel="stylesheet" type="text/css" href="/new/css/custom.css">
+     <link rel="stylesheet" type="text/css" href="/new/css/inner-custom.css">
+
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  </head>
+  <style>
+
+</style>
+<body>
+<header class="header-main">
+  <div class="loader-new" id="loader"> 
+    <img src="/new/images/loader-new.gif">
+  </div>
+  <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+           <nav class="navbar navbar-expand-lg">
+             <div class="navbar-brand justify-content-center"> 
+              <a href="/"><img src="/new/images/logo.png" width="100%"></a>
+              </div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+              </button>
+                <div class="collapse navbar-collapse all-about-row" id="navbarNavAltMarkup">
+                  <ul class="navbar-nav  m-auto">
+                    <!-- <li class="nav-item active"> -->
+                    <li class="nav-item">
+
+                      <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/about-us">About</a>
+                    </li>
+                    <li class="nav-item d-none">
+                      <a class="nav-link" href="/our-projects">Our Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/property">Properties</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contact-us">Contact Us</a>
+                    </li>
+                    
+                  </ul>
+               </div>
+               
+               <script>
+                $(document).ready(function(){
+                  $('ul li').click(function(){
+                    
+                    $('li').removeClass("active");
+                    $(this).addClass("active");
+                });
+                });
+              
+               </script>
+                  <div>
+                    <ul class="navbar-nav buy-now-row">
+                     <li class="nav-item">
+                      <a class="nav-link login-btn" href="/property">Buy Now</a>
+                    </li>
+                    <li class=" nav-item dropdown user-dash-icon">
+                        <button class="" onclick="checkUser()" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="/new/images/meta_mask.png">
+                        </button>
+                        <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Dashboard</a>
+                          <a class="dropdown-item" href="#">Logout</a>
+                        </div> -->
+                    </li>
+                  </ul>
+                  </div>
+             </div>
+          </nav>
+        </div>
+      </div>
+  </div>
+</header>
