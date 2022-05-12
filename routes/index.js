@@ -10,5 +10,6 @@ router.get('/about-us',HomeController.newAboutUs);
 router.get('/contact-us',HomeController.newContactUs);
 
 router.get('/property',HomeController.newpropertyList);
+router.get('/addProperty',HomeController.addProperty);
 
 module.exports = router;

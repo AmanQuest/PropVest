@@ -1,4 +1,8 @@
 
+const addProperty=async(req,res)=>{
+    res.render('add-property')
+
+}
 const index=async(req,res)=>{
      res.render('new-index')
 
@@ -56,5 +60,6 @@ module.exports = {
    index,
    newAboutUs,
    newContactUs,
-   newpropertyList
+   newpropertyList,
+   addProperty
 };
