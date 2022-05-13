@@ -11,5 +11,6 @@ router.get('/contact-us',HomeController.newContactUs);
 
 router.get('/property',HomeController.newpropertyList);
 router.get('/addProperty',HomeController.addProperty);
+router.get('/propertyDetail',HomeController.propertyDetail);
 
 module.exports = router;

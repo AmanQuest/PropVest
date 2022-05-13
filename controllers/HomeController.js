@@ -1,4 +1,8 @@
 
+const propertyDetail=async(req,res)=>{
+    res.render('property-details')
+
+}
 const addProperty=async(req,res)=>{
     res.render('add-property')
 
@@ -61,5 +65,6 @@ module.exports = {
    newAboutUs,
    newContactUs,
    newpropertyList,
-   addProperty
+   addProperty,
+   propertyDetail
 };

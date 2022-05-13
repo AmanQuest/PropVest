@@ -1,5 +1,46 @@
 <%- include('./ellington-new/header.ejs') %>
+<style>
+  /*add property-css*/
 
+.add-prop-sec {
+    padding: 120px 0;
+    height: auto;
+    max-height: initial;
+}
+.add-property-box {
+    position: relative;
+    z-index: 10;
+    text-align: left;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 50px 0;
+}
+.add-property-box .form-group{
+margin-bottom: 40px;
+}
+.add-property-box .form-group label {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #001c3e;
+}
+.add-property-box .form-group .form-control {
+    border: 2px solid #001c3e;
+    padding: 10px 15px;
+    line-height: initial;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+@media (max-width : 768px ){
+
+.add-prop-sec {
+    padding: 60px 0;
+}
+
+}
+</style>
 <section class="main-banner about-banner project-sec-inner add-prop-sec">
     <div class="container">
         <div class="row">
@@ -10,13 +51,13 @@
                         <div class="col-md-6">
                            <div class="form-group">
                             <label>Land Tittle</label>
-                            <input type="text" class="form-control" placeholder="Enter Land Tittle">
+                            <input type="text" class="form-control" placeholder="Enter Land Tittle" required>
                           </div> 
                       </div>
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Land Image</label>
-                            <input type="file" class="form-control" placeholder="Enter Land Tittle">
+                            <input type="file" class="form-control" placeholder="Enter Land Tittle" required>
                           </div>
                         </div>
                         
@@ -25,19 +66,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>Land Size</label>
-                            <input type="text" class="form-control" placeholder="Land Size height*width Sq Ft">
+                            <input type="text" class="form-control" placeholder="Land Size height*width Sq Ft" required>
                           </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>MIN BUYING AMOUNT</label>
-                            <input type="text" class="form-control" placeholder="MIN BUYING AMOUNT">
+                            <input type="text" class="form-control" placeholder="MIN BUYING AMOUNT" required>
                           </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>PRICE</label>
-                            <input type="text" class="form-control" placeholder="PRICE">
+                            <input type="text" class="form-control" placeholder="PRICE" required>
                           </div>
                         </div>
                         
@@ -48,24 +89,39 @@
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>QUNATITY PER BRICK</label>
-                            <input type="text" class="form-control" placeholder="Enter Quantity">
+                            <input type="text" class="form-control" placeholder="Enter Quantity" required>
                           </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>RATE PER BRICK</label>
-                            <input type="text" class="form-control" placeholder="Enter Rate">
+                            <input type="text" class="form-control" placeholder="Enter Rate" required>
                           </div>
                         </div>
                          <div class="col-md-4">
                             <div class="form-group">
                             <label>QUNATITY(No of Plots)</label>
-                            <input type="text" class="form-control" placeholder="Enter Quantity(No of Plots)">
+                            <input type="text" class="form-control" placeholder="Enter Quantity(No of Plots)" required>
                           </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                          <div class="form-group">
+                          <label>City</label>
+                          <select class="form-control" aria-label="Enter City" placeholder="Enter City" required>
+                              <option selected>Enter City</option>
+                              <option value="Mumbai">Mumbai</option>
+                              <option value="Delhi">Delhi</option>
+                              <option value="Kolkata">Kolkata</option>
+                              <option value="Chennai">Chennai</option>
+                            </select>
+                        </div>
+                      </div>
+                     
+                  </div>
                     <div>
-                        <button class="common-btn">Submit</button>
+                        <button class="common-btn submit-data">Submit</button>
                     </div>
                     </div>
                 </div>
@@ -73,5 +129,17 @@
         </div>
     </div>
 </section>
-
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script>
+    $('.submit-data').click(function(){
+       //swal("Submited Successfully.");
+       swal("Submited Successfully.")
+.then((value) => {
+ if(value){
+   window.location.href = "/property";
+ }
+ 
+});
+    })
+</script>
 <%- include('./ellington-new/footer.ejs') %>
