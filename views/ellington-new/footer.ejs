@@ -243,39 +243,6 @@ $('.testimonial-slider').slick({
  }
 </script>
 
-<script>
-  async function checkUser(){
-       metanaskPopup();
-        // alert("hello");
-      //subscribeByMetaMask(0)
-      
-     //let account= await getAccount(); //await onLogin();
-      
-       console.log(account);
-      
-         $.ajax({type:"get",
-              url:"/users/login-by-wallet",
-              data:{account:account},
-              success:function(res){
-                 
-                   if(res){  //alert(res);
-                       console.log(res);
-                      location.reload();
-                      swal("Good job!", "Order Placed Successfully!", "success");
-                   }else
-                     {
-                      swal("Please Select Wallet!");
-
-                     } 
-                    console.log(res);
-
-              }
-          });
-
-  }
-  
-</script>    
-
 
 
 
@@ -897,14 +864,13 @@ async function buyLand(id){
               success:function(res){
                  
                    if(res){  //alert(res);
-                       console.log(res);
+                       console.log("res", res);
                       //location.reload();
                       window.location.href="/transactions";
                    }else
                      {
                       swal("Please Select Wallet!");
                      } 
-                    console.log(res);
               }
           });
       }else{

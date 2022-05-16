@@ -5,11 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config()
+var session = require('express-session')
 const DB = process.env.DB
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 
 var app = express();
 
@@ -29,6 +31,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use(session({ 
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 600000 }
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

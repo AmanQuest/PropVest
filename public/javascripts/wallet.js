@@ -1061,17 +1061,35 @@ async function BuyNFT() {
         if (!err) 
          {  
              console.log(hash);
-             swal({
-                              type: 'success',
-                               text: 'Transaction completed successfully.',
-                               timer: 3000,
-                               onOpen: function() {
-                                 swal.showLoading()
-                             }
-                         }).then(function() {
-                             //window.open('https://testnet.bscscan.com/tx/'+hash,target="_blank")
-                             location.reload();
-                        });
+
+             let order={
+                tokenId : id,
+                address : wallet_address,
+                amount : "0.1",
+                hash : hash.hash
+            };
+
+             $.ajax({  type:"POST",
+             dataType: "json",
+             url:"/sale-nft",
+             data:order,
+             success:function(res){
+                swal({
+                                type: 'success',
+                                text: 'Transaction completed successfully.',
+                                timer: 3000,
+                                onOpen: function() {
+                                    swal.showLoading()
+                                }
+                            }).then(function() {
+                                //window.open('https://testnet.bscscan.com/tx/'+hash,target="_blank")
+                                // location.reload();
+                                window.location.href="/transactions";
+
+                            });
+
+                }
+            });
             //  $.ajax({
             //     dataType: "json",
             //     type: 'post',

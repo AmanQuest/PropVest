@@ -1,3 +1,5 @@
+const userServices = require("../services/userServices");
+const orderServices=require('../services/orderServices');
 
 const propertyDetail=async(req,res)=>{
     res.render('property-details')
@@ -60,11 +62,98 @@ const newpropertyList=async (req,res)=>{
 
 }
 
+const addOrder=async(req,res)=>{
+    let body=req.body;
+    let id=body.id;
+    let hash=body.hash;
+    let address=body.address;
+    let land_id=body.land_id;
+    address=address.toLowerCase();
+    console.log(address);
+    try{ 
+        let user=await userServices.checkUserByWallet(address);
+        let user_id="";
+        if(user){
+            user_id=user._id;
+            req.session.success = true;
+            req.session.re_us_id = user._id;
+            req.session.re_usr_name = user.name;
+            req.session.re_usr_email = user.email;
+            req.session.wallet_address = address
+            req.session.is_user_logged_in = true;
+            req.session.role=user.user_role;
+          }
+        else
+          {
+                let email=address+"@gmail.com";
+                let mystr ='12345'; //await contentCreaterServices.createCipher("123456");
+                // let created = await contentCreaterServices.createAtTimer();
+                userOBJ={ name:address,
+                       email:email,
+                       password:mystr,
+                       username:"metamask",
+                       mobile:"1234567898",
+                       wallet_address:address,
+                       user_role:"user",
+                       created_at:created  
+                       }
+    
+                       let newuser = await userServices.addUserByWallet(userOBJ);
+                       let user=await userServices.checkUserByWallet(address);
+                       user_id=user._id;
+                       req.session.success = true;
+                       req.session.re_us_id = user._id;
+                       req.session.re_usr_name = user.name;
+                       req.session.re_usr_email = user.email;
+                       req.session.is_user_logged_in = true;
+                       req.session.role=user.user_role;      
+          }
+
+          let order={
+            user_id:user_id,
+            hash:hash,
+            wallet_address:req.body.address,
+            address_to : "0xd3A5B4cfDDF26945E0BbEf28CF32760b96f758C6",
+            total:req.body.amount,
+            tokenId : req.body.tokenId,
+            status:"success"
+            } 
+            let orderData=await orderServices.saveOrder(order);
+             
+          res.send(order);
+    }catch(e){console.log(e);}
+
+}
+
+const NewtransactionHistory=async(req,res)=>{
+    console.log("req.session", req.session);
+    let user_id=req.session.re_us_id;
+    let address=req.session.wallet_address
+    if(address=="undefined"|| address==null)
+    {
+       res.redirect('/');
+    }
+    let landDatas =await orderServices.findOrderByUser(user_id,address);
+   
+    var transaction=[]
+    for(var key of landDatas){
+        var temp = JSON.stringify(key);
+        var temp1 = JSON.parse(temp);
+        transaction.push(temp1)
+    }
+
+    console.log(transaction);
+    res.render('transaction',{name:req.session.re_usr_name,tx:transaction})
+}
+
+
 module.exports = {
    index,
    newAboutUs,
    newContactUs,
    newpropertyList,
    addProperty,
-   propertyDetail
+   propertyDetail,
+   addOrder,
+   NewtransactionHistory
 };
