@@ -19,7 +19,8 @@ const findOrderByUser=async(user_id,address)=>{
       
       let regex = new RegExp(address,'i');
 
-      let orders=await OrderInfo.find({wallet_address:regex}).sort( { _id: -1 } ); 
+      let orders=await OrderInfo.find({
+        address_to:regex}).sort( { _id: -1 } ); 
       
         return orders; 
       }catch(e){console.log(e)}  

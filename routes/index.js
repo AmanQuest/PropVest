@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var session = require('express-session');
 const HomeController=require('../controllers/HomeController');
+const authuser=require('../middleware/authuser');
 
 router.use(session({
     secret: 'keyboard cat',
@@ -11,7 +12,7 @@ router.use(session({
   }))
 
 /* GET home page. */
-router.get('/',HomeController.index);
+router.get('/',authuser, HomeController.index);
 
 router.get('/about-us',HomeController.newAboutUs);
 

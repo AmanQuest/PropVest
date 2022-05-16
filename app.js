@@ -14,6 +14,12 @@ var usersRouter = require('./routes/users');
 
 
 var app = express();
+app.use(session({ 
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 600000 }
+}));
 
 mongoose.connect(DB)
     .then(() => console.log('MongoDB Database Connected'))
@@ -48,6 +54,8 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  res.locals.role=req.session.role;
+  res.locals.name=req.session.re_usr_name;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page

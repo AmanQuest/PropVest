@@ -50,11 +50,12 @@
                             <table class="table table-striped table-bordered table-transaction">
                             <thead>
                                 <tr>
-                                    <th width="8%">Image</th>
-                                    <th width="14%">Plot Type</th>
+                                    <th width="8%">S. No.</th>
+                                    <!-- <th width="14%">Plot Type</th> -->
                                     <th width="8%">Amount</th>
                                     <th width="20%">Payment hash</th>
                                     <th width="20%">Token Id</th>
+                                    <th width="20%">Sender's Wallet</th>
                                     <th width="20%">Wallet address To</th>
                                     <th width="10%">Status</th>
                                 </tr>
@@ -66,22 +67,19 @@
                                     tx.forEach(function(value,index){%>
 
                                     <tr>
-                                        <td><img  width="50" src="/uploadFile/<%=value.landInfo.image %>" alt=""></td>
-                                        <td><% if(value.landInfo){%> 
-                                            <%=value.landInfo.name %>
-                                            <%} %></td>
+                                        <td><%= index+1 %></td>
                                         <td><%=value.total %> Matic</td>
 
                                         <!-- hash -->
-                                        <td><a id="hash" href="https://mumbai.polygonscan.com//tx/<%=value.hash %>" target="_blank"><%=value.hash %></a></td>
+                                        <td><a id="hash" href="https://testnet.bscscan.com/tx/<%=value.hash %>" target="_blank"><%=value.hash %></a></td>
 
                                         <!-- wallet address from -->
                                         <td><%=value.tokenId
                                             %></td>
-                                        <td><a href="https://mumbai.polygonscan.com//address/<%=value.wallet_address %>" target="_blank"><%=value.wallet_address %></a></td>
+                                        <td><a href="https://testnet.bscscan.com/address/<%=value.wallet_address %>" target="_blank"><%=value.wallet_address %></a></td>
 
                                         <!-- wallet address to -->
-                                        <!-- <td><a href="https://mumbai.polygonscan.com//address/<%=value.address_to %>" target="_blank"><%=value.address_to %></a></td> -->
+                                        <td><a href="https://testnet.bscscan.com/address/<%=value.address_to %>" target="_blank"><%=value.address_to %></a></td>
 
                                         <!-- status -->
                                         <td><span class="badge badge-success">Success </span> </td>

@@ -64,6 +64,7 @@ const newpropertyList=async (req,res)=>{
 
 const addOrder=async(req,res)=>{
     let body=req.body;
+    console.log("body", body);
     let id=body.id;
     let hash=body.hash;
     let address=body.address;
@@ -95,7 +96,7 @@ const addOrder=async(req,res)=>{
                        mobile:"1234567898",
                        wallet_address:address,
                        user_role:"user",
-                       created_at:created  
+                       
                        }
     
                        let newuser = await userServices.addUserByWallet(userOBJ);
@@ -112,8 +113,8 @@ const addOrder=async(req,res)=>{
           let order={
             user_id:user_id,
             hash:hash,
-            wallet_address:req.body.address,
-            address_to : "0xd3A5B4cfDDF26945E0BbEf28CF32760b96f758C6",
+            wallet_address: "0xd3A5B4cfDDF26945E0BbEf28CF32760b96f758C6",
+            address_to : req.body.address,
             total:req.body.amount,
             tokenId : req.body.tokenId,
             status:"success"

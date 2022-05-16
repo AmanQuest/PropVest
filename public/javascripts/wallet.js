@@ -1066,7 +1066,7 @@ async function BuyNFT() {
                 tokenId : id,
                 address : wallet_address,
                 amount : "0.1",
-                hash : hash.hash
+                hash : hash
             };
 
              $.ajax({  type:"POST",
