@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
-const authController=require('../controllers/authController');
+const authController=require('../controllers/AuthController');
 
 router.use(session({
   secret: 'keyboard cat',
